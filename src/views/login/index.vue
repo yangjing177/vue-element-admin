@@ -13,23 +13,18 @@
         <span class="svg-container">
           <svg-icon icon-class="password"></svg-icon>
         </span>
+        <!--@keyup.enter.native:按回车触发登陆 autoComplete:启用自动完成功能   placeholder:文本框注释-->
         <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
           placeholder="password"></el-input>
+        <!--所有的v-on都可以简写为@，比如说v-click可以简写为@click  单击触发事件-->
           <span class="show-pwd" @click="showPwd"><svg-icon icon-class="eye" /></span>
       </el-form-item>
       <el-form-item>
+        <!--@click.native.prevent="handleLogin"：单击 键盘事件要加native，阻止冒泡-->
         <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
           登录
         </el-button>
       </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">账户: admin</span>
-        <span> 密码: admin</span>
-      </div>
-      <div class="tips">
-        <span style="margin-right:20px;">账户: editor</span>
-        <span> 密码: editor</span>
-      </div>
     </el-form>
   </div>
 </template>
