@@ -27,26 +27,26 @@
     <el-table :data="tableList" v-loading="listLoading" border element-loading-text="拼命加载中" style="width: 100%;">
       <el-table-column prop="uid" label="序号" width="65">
       </el-table-column>
-      <el-table-column prop="cname" label="姓名">
+      <el-table-column prop="cname" label="作者">
       </el-table-column>
-      <el-table-column prop="title" min-width="150px" label="标题">
+      <el-table-column prop="title" min-width="150px" label="书名">
       </el-table-column>
-      <el-table-column prop="number" label="阅读数"  width="65">
+      <el-table-column prop="number" label="阅读量"  width="65">
       </el-table-column>
-      <el-table-column prop="date" label="时间" width="110px">
+      <el-table-column prop="date" label="上架时间" width="110px">
       </el-table-column>
       <el-table-column  label="状态" width="120" >
         <template slot-scope="scope">
-          <el-tag size="small" :type="scope.row.status | statusFilter" @click="isStatus(scope.$index, scope.row)" v-if="scope.row.status == 1">启用</el-tag>
-          <el-tag size="small"  :type="scope.row.status | statusFilter" @click="isStatus(scope.$index, scope.row)" v-if="scope.row.status == 2">禁用</el-tag>
+          <el-tag size="small" :type="scope.row.status | statusFilter" @click="isStatus(scope.$index, scope.row)" v-if="scope.row.status == 1">连载中</el-tag>
+          <el-tag size="small"  :type="scope.row.status | statusFilter" @click="isStatus(scope.$index, scope.row)" v-if="scope.row.status == 2">完结</el-tag>
         </template>
       </el-table-column>
       <el-table-column prop="operation" label="操作 ">
         <template slot-scope="scope" >
          <el-button size="small" type="primary"  @click="handleUpdate(scope.row)">编辑</el-button>
-         <el-button v-if="scope.row.status!='2'" size="mini" type="success" @click="handleModifyStatus(scope.row,'2')">启用
+         <el-button v-if="scope.row.status!='2'" size="mini" type="success" @click="handleModifyStatus(scope.row,'2')">连载中
           </el-button>
-          <el-button v-if="scope.row.status!='1'" size="mini" @click="handleModifyStatus(scope.row,'1')">禁用
+          <el-button v-if="scope.row.status!='1'" size="mini" @click="handleModifyStatus(scope.row,'1')">完结
           </el-button>
           <el-button size="small" type="danger" @click="deleteUpdate(scope.row)">删除</el-button>
         </template>
@@ -105,7 +105,7 @@
 
 
 <script>
-import { getList, updateArticle } from '@/api/table'
+import { getList, updateArticle, deleteTable } from '@/api/table'
 export default {
   data() {
     return {
@@ -125,10 +125,10 @@ export default {
       status: [
         {
           statusId: 1,
-          label: '启用'
+          label: '连载中'
         }, {
           statusId: 0,
-          label: '禁用'
+          label: '完结'
         }
       ],
       value: '',
@@ -200,22 +200,22 @@ export default {
     submitDelete() {
       const tempData = Object.assign({}, this.temp)
       console.log(tempData)
-      console.log(this.tableList)
-      for (const v of this.tableList) {
-        if (v.uid === this.temp.uid) {
-          const index = this.tableList.indexOf(v)
-          this.tableList.splice(index, 1)
-          this.fetchData()
-          console.log(this.tableList)
-          break
+      // console.log(this.tableList)
+      deleteTable(tempData).then(() => {
+        for (const v of this.tableList) {
+          if (v.uid === this.temp.uid) {
+            const index = this.tableList.indexOf(v)
+            this.tableList.splice(index, 1)
+            break
+          }
         }
-      }
-      this.deleteVisible = false
-      this.$notify({
-        title: '成功',
-        message: '删除成功',
-        type: 'success',
-        duration: 2000
+        this.deleteVisible = false
+        this.$notify({
+          title: '成功',
+          message: '删除成功',
+          type: 'success',
+          duration: 2000
+        })
       })
     },
     handleModifyStatus(row, status) {
@@ -227,6 +227,7 @@ export default {
       row.status = status
     },
     updateData() {
+      // Object.assign复制数据
       const tempData = Object.assign({}, this.temp)
       console.log(tempData)
       updateArticle(tempData).then(() => {

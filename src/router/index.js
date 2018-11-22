@@ -33,6 +33,12 @@ export const constantRouterMap = [
         meta: { title: 'complexTable' }
       },
       {
+        path: 'Form',
+        name: 'Form',
+        component: () => import('@/views/form/index'),
+        meta: { title: 'BaseForm' }
+      },
+      {
         path: 'fullcalendar',
         name: 'Fullcalendar',
         component: () => import('@/views/fullcalendar/fullcalendar'),
@@ -66,12 +72,6 @@ export const constantRouterMap = [
     },
     children: [
       {
-        path: 'Form',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'BaseForm' }
-      },
-      {
         path: 'qiniu',
         name: 'qiniu',
         component: () => import('@/views/form/qiniu'),
@@ -82,13 +82,14 @@ export const constantRouterMap = [
         name: 'quillEditor',
         component: () => import('@/views/form/quillEditor'),
         meta: { title: 'quillEditor' }
-      },
-      {
-        path: 'tinymce',
-        name: 'tinymce',
-        component: () => import('@/views/form/tinymce'),
-        meta: { title: 'tinymce' }
       }
+      // ,
+      // {
+      //   path: 'tinymce',
+      //   name: 'tinymce',
+      //   component: () => import('@/views/form/tinymce'),
+      //   meta: { title: 'tinymce' }
+      // }
     ]
   }
 ]
@@ -157,24 +158,24 @@ export const asyncRouterMap = [
       }
     ]
   },
-  {
-    path: '/excel',
-    component: Layout,
-    redirect: '/excel/exportExcel',
-    name: 'excel',
-    meta: {
-      title: 'excel',
-      icon: 'excel'
-    },
-    children: [
-      {
-        path: 'exportExcel',
-        name: 'exportExcel',
-        component: () => import('@/views/excel/exportExcel'),
-        meta: { title: 'exportExcel', icon: 'excel' }
-      }
-    ]
-  },
+  // {
+  //   path: '/excel',
+  //   component: Layout,
+  //   redirect: '/excel/exportExcel',
+  //   name: 'excel',
+  //   meta: {
+  //     title: 'excel',
+  //     icon: 'excel'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'exportExcel',
+  //       name: 'exportExcel',
+  //       component: () => import('@/views/excel/exportExcel'),
+  //       meta: { title: 'exportExcel', icon: 'excel' }
+  //     }
+  //   ]
+  // },
   {
     path: '/i18n-demo',
     component: Layout,

@@ -18,7 +18,23 @@ export function getMonth(params) {
 
 export function updateArticle(data) {
   return request({
-    url: '/article/update',
+    url: '/user/update',
+    method: 'post',
+    data
+  })
+}
+
+export function deleteTable(data) {
+  return request({
+    url: '/user/delete',
+    method: 'post',
+    data
+  })
+}
+
+export function addTable(data) {
+  return request({
+    url: '/user/add',
     method: 'post',
     data
   })

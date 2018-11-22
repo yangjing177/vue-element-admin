@@ -7,8 +7,6 @@ import transactionAPI from './transaction'
 //   timeout: '350-600'
 // })
 
-
-
 // 登录相关
 Mock.mock(/\/login\/login/, 'post', loginAPI.loginByUsername)
 Mock.mock(/\/login\/logout/, 'post', loginAPI.logout)
