@@ -64,7 +64,7 @@ export default {
           }
         },
         legend: {
-          data: ['蒸发量', '降水量', '平均温度']
+          data: ['点击量', '销售量', '平均销售量']
         },
         xAxis: [
           {
@@ -77,40 +77,40 @@ export default {
         yAxis: [
           {
             type: 'value',
-            name: '水量',
+            name: '点击量',
             min: 0,
             max: 250,
             interval: 50,
             axisLabel: {
-              formatter: '{value} ml'
+              formatter: '{value} 万'
             }
           },
           {
             type: 'value',
-            name: '温度',
+            name: '销售量',
             min: 0,
             max: 25,
             interval: 5,
             axisLabel: {
-              formatter: '{value} °C'
+              formatter: '{value} 万'
             }
           }],
         series: [
           {
-            name: '蒸发量',
+            name: '点击量',
             type: 'bar',
-            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+            data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 170, 163, 156.3, 140.2]
           },
           {
-            name: '降水量',
+            name: '销售量',
             type: 'bar',
-            data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
+            data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 125.6, 132.2, 150, 150, 140, 130]
           },
           {
-            name: '平均温度',
+            name: '平均销售量',
             type: 'line',
             yAxisIndex: 1,
-            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+            data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 22.5, 21.0, 20]
           }]
       })
     }

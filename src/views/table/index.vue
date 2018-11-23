@@ -3,23 +3,12 @@
     <el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
       <el-form :inline="true">
         <el-form-item>
-          <el-select v-model="value" clearable placeholder="状态">
-              <el-option
-                v-for="item in status"
-                :key="item.statusId"
-                :label="item.label"
-                :value="item.statusId">
-              </el-option>
-          </el-select>
         </el-form-item>
                 <el-form-item >
           <el-input placeholder="姓名" v-model="searchName"></el-input>
         </el-form-item>
         <el-form-item>
            <el-button type="primary" @click="doFilter()"><i class="el-icon-search"></i>搜索</el-button>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" >新增</el-button>
         </el-form-item>
       </el-form>
     </el-col>
@@ -44,10 +33,6 @@
       <el-table-column prop="operation" label="操作 ">
         <template slot-scope="scope" >
          <el-button size="small" type="primary"  @click="handleUpdate(scope.row)">编辑</el-button>
-         <el-button v-if="scope.row.status!='2'" size="mini" type="success" @click="handleModifyStatus(scope.row,'2')">连载中
-          </el-button>
-          <el-button v-if="scope.row.status!='1'" size="mini" @click="handleModifyStatus(scope.row,'1')">完结
-          </el-button>
           <el-button size="small" type="danger" @click="deleteUpdate(scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -55,7 +40,7 @@
     <!--工具条-->
     <el-pagination layout="total, prev, pager, next"
                     background
-                    :page-size="10"
+                    :page-size="8"
                     @size-change="handleSizeChange"
                     :total="total"
                     @current-change="handleCurrentChange"
@@ -152,7 +137,7 @@ export default {
     fetchData() {
       this.listLoading = true
       getList(this.listQuery).then(response => {
-        const limit = 10
+        const limit = 8
         const pageList = response.data.filter((item, index) => index < limit * this.page && index >= limit * (this.page - 1))
         console.log(pageList)
         this.total = response.data.length

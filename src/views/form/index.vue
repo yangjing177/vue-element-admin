@@ -2,22 +2,10 @@
 <template>
   <div class="app-container">
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-    <el-form-item label="序号" prop="uid">
-      <el-select v-model="ruleForm.uid" placeholder="请选择序号">
-        <el-option label="1" value="1"></el-option>
-        <el-option label="2" value="2"></el-option>
-        <el-option label="3" value="3"></el-option>
-        <el-option label="4" value="4"></el-option>
-        <el-option label="5" value="5"></el-option>
-        <el-option label="6" value="6"></el-option>
-        <el-option label="7" value="7"></el-option>
-        <el-option label="8" value="8"></el-option>
-        <el-option label="9" value="9"></el-option>
-        <el-option label="10" value="10"></el-option>
-        <el-option label="11" value="11"></el-option>
-        <el-option label="12" value="12"></el-option>
-      </el-select>
-    </el-form-item>
+      <el-form-item label="序号" prop="uid">
+        <el-input v-model="ruleForm.uid"></el-input>
+      </el-form-item>
+
       <el-form-item label="作者" prop="cname">
         <el-input v-model="ruleForm.cname"></el-input>
       </el-form-item>
@@ -40,9 +28,14 @@
         <!--</el-form-item>-->
       <!--</el-col>-->
     </el-form-item>
-    <el-form-item label="状态" prop="status">
-      <el-switch v-model="ruleForm.status"></el-switch>
-    </el-form-item>
+
+      <el-form-item label="状态" prop="status">
+        <el-select v-model="ruleForm.status" placeholder="请选择状态">
+          <el-option label="连载中" value="1"></el-option>
+          <el-option label="已完结" value="2"></el-option>
+        </el-select>
+      </el-form-item>
+
     <el-form-item label="销售点" prop="space">
       <el-checkbox-group v-model="ruleForm.space">
         <el-checkbox label="淘宝" name="type"></el-checkbox>
@@ -92,22 +85,19 @@
             { required: true, message: '请输入作者', trigger: 'blur' }
           ],
           title: [
-            { required: true, message: '请输入书名', trigger: 'change' }
-          ],
-          number: [
-            { number: 'date', required: true, message: '请输入阅读量', trigger: 'change' }
+            { required: true, message: '请输入书名', trigger: 'blur' }
           ],
           date: [
-            { required: true, message: '请选择时间', trigger: 'change' }
+            { required: true, message: '请选择时间', trigger: 'blur' }
           ],
           // status: [
           //   { status: 'date', required: true, message: '请选择状态', trigger: 'change' }
           // ],
           space: [
-            { required: true, message: '请至少选择一个销售点', trigger: 'change' }
+            { required: true, message: '请至少选择一个销售点', trigger: 'blur' }
           ],
           type: [
-            { required: true, message: '请选择书籍类型', trigger: 'change' }
+            { required: true, message: '请选择书籍类型', trigger: 'blur' }
           ],
           inttroduce: [
             { required: true, message: '请填写书籍简介', trigger: 'blur' }

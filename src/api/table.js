@@ -7,6 +7,13 @@ export function getList(params) {
     params
   })
 }
+export function getList1(params) {
+  return request({
+    url: '/user/kucun',
+    method: 'get',
+    params
+  })
+}
 
 export function getMonth(params) {
   return request({
