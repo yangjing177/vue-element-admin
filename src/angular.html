@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+   <script src="./js/angular.min.js"></script>
 </head>
 <body>
-$END$
+<div>
+    <label>Name:</label>
+    <input type="text" ng-model="user.name" placeholder="请输入名字">
+    <hr>
+    <h1>Hello,{{user.name}}!</h1>
+</div>
 </body>
 </html>

@@ -12,21 +12,21 @@
     </el-col>
     <!--列表-->
     <el-table :data="tableList" v-loading="listLoading" border element-loading-text="拼命加载中" style="width: 100%;">
-      <el-table-column prop="uid" label="序号" width="65">
+      <el-table-column prop="id" label="序号" width="65">
       </el-table-column>
-      <el-table-column prop="cname" label="作者">
+      <el-table-column prop="username" label="用户名">
       </el-table-column>
-      <el-table-column prop="title" min-width="150px" label="书名">
+      <el-table-column prop="password" min-width="150px" label="密码">
       </el-table-column>
-      <el-table-column prop="number" label="阅读量"  width="65">
+      <el-table-column prop="mobile" label="手机号"  width="65">
       </el-table-column>
-      <el-table-column prop="date" label="上架时间" width="110px">
+      <el-table-column prop="adress" label="地址" width="110px">
       </el-table-column>
-      <el-table-column prop="num" label="库存" width="120" >
-
+      <el-table-column prop="createDate" label="创建时间" width="120" >
       </el-table-column>
-      <el-table-column prop="price" label="价格">
-
+      <el-table-column prop="updateDate" label="修改时间">
+      </el-table-column>
+      <el-table-column prop="isDelete" label="是否删除">
       </el-table-column>
     </el-table>
     <!--工具条-->
@@ -38,7 +38,7 @@
                    @current-change="handleCurrentChange"
                    style="text-align:center;">
     </el-pagination>
-
+    
 
 
 
@@ -104,6 +104,7 @@
     },
     methods: {
       fetchData() {
+        debugger
         this.listLoading = true
         getList1(this.listQuery).then(response => {
           const limit = 8
@@ -116,10 +117,12 @@
       },
       doFilter() {
         if (this.searchName === '') {
+          debugger
           this.fetchData()
           // this.$message.warning('查询条件不能为空！')
           return
         }
+        debugger
         console.log(this.searchName)
         // 每次手动将数据置空,因为会出现多次点击搜索情况
         this.filterTableDataEnd = []
@@ -146,11 +149,13 @@
         console.log(row)
       },
       handleSizeChange(val) {
+        debugger
         this.page = val
         console.log(this.page)
         this.fetchData()
       },
       handleCurrentChange(val) {
+        debugger
         this.page = val
         console.log(this.page)
         this.fetchData()

@@ -2,21 +2,37 @@
 <template>
   <div class="app-container">
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+      <el-row>
+        <el-col>
       <el-form-item label="序号" prop="uid">
-        <el-input v-model="ruleForm.uid"></el-input>
+        <el-input v-model="ruleForm.uid" style="width: 300px"></el-input>
       </el-form-item>
 
-      <el-form-item label="作者" prop="cname">
-        <el-input v-model="ruleForm.cname"></el-input>
+      <el-form-item label="商品名" prop="cname">
+        <el-input v-model="ruleForm.cname" style="width: 300px"></el-input>
       </el-form-item>
-      <el-form-item label="书名" prop="title">
-        <el-input v-model="ruleForm.title"></el-input>
+        </el-col>
+      </el-row>
+      <el-form-item label="价格" prop="title">
+        <el-input v-model="ruleForm.title" style="width: 300px"></el-input>
       </el-form-item>
-      <el-form-item label="阅读量" prop="number">
-        <el-input v-model="ruleForm.number"></el-input>
+      <el-form-item label="数量" prop="number">
+        <el-input v-model="ruleForm.number" style="width: 300px"></el-input>
+      </el-form-item>
+      <el-form-item label="品牌" prop="number">
+        <el-input v-model="ruleForm.number" style="width: 300px"></el-input>
+      </el-form-item>
+      <el-form-item label="种类" prop="number">
+        <el-input v-model="ruleForm.number" style="width: 300px"></el-input>
+      </el-form-item>
+      <el-form-item label="包装" prop="number">
+        <el-input v-model="ruleForm.number" style="width: 300px"></el-input>
+      </el-form-item>
+      <el-form-item label="容量" prop="number">
+        <el-input v-model="ruleForm.number" style="width: 300px"></el-input>
       </el-form-item>
     <el-form-item label="上架时间" required>
-      <el-col :span="11">
+      <el-col :span="5">
         <el-form-item prop="date">
           <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date" style="width: 100%;"></el-date-picker>
         </el-form-item>

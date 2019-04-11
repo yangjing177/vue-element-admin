@@ -2,14 +2,14 @@ import request from '@/utils/request'
 
 export function getList(params) {
   return request({
-    url: '/user/table',
+    url: '/goods/list',
     method: 'get',
     params
   })
 }
 export function getList1(params) {
   return request({
-    url: '/user/kucun',
+    url: '/admin/users',
     method: 'get',
     params
   })
