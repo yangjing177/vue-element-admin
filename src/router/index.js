@@ -32,17 +32,23 @@ export const constantRouterMap = [
         component: () => import('@/views/table/index'),
         meta: { title: 'complexTable' }
       },
-      {
-        path: 'Form',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'BaseForm' }
-      },
+      // {
+      //   path: 'Form',
+      //   name: 'Form',
+      //   component: () => import('@/views/form/index'),
+      //   meta: { title: 'BaseForm' }
+      // },
       {
         path: 'fullcalendar',
         name: 'Fullcalendar',
         component: () => import('@/views/fullcalendar/fullcalendar'),
         meta: { title: 'calendar' }
+      },
+      {
+        path: 'order',
+        name: 'order',
+        component: () => import('@/views/table/order'),
+        meta: { title: 'order' }
       }
     ]
   },

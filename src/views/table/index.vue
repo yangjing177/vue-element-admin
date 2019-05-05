@@ -18,9 +18,11 @@
       </el-table-column>
       <el-table-column prop="goodsName" label="商品名">
       </el-table-column>
-      <el-table-column prop="price" label="价格">
+      <el-table-column prop="price" label="价格" width="100">
       </el-table-column>
-      <el-table-column prop="number" label="数量"  width="65">
+      <el-table-column prop="number" label="数量"  width="100">
+      </el-table-column>
+      <el-table-column prop="parentType" label="类别" width="110px">
       </el-table-column>
       <el-table-column prop="brand" label="品牌" width="110px">
       </el-table-column>
@@ -30,7 +32,7 @@
       </el-table-column>
       <el-table-column prop="size" label="容量" width="110px">
       </el-table-column>
-      <el-table-column prop="isDelete" label="是否删除" width="110px">
+      <el-table-column prop="createDate" label="入库时间" width="250px">
       </el-table-column>
       <!--<el-table-column  label="状态" width="120" >-->
         <!--<template slot-scope="scope">-->
@@ -57,23 +59,42 @@
 
 
     <!-- 新增编辑院校 -->
-    <el-dialog title="Edit" :visible.sync="isShowEditVisible">
-      <el-form label-width="80px" :model="temp" ref="dataForm">
-        <el-form-item label="姓名" prop="cname">
-          <el-input v-model="temp.cname"></el-input>
+    <el-dialog title="编辑"
+               :visible.sync="isShowEditVisible"
+               :modal-append-to-body="false">
+      <el-form label-width="160px" :model="temp" ref="dataForm" :inline="true" >
+        <el-form-item label="商品名" prop="goodsName">
+          <el-input v-model="temp.goodsName"></el-input>
         </el-form-item>
-        <el-form-item label="时间" prop="date">
-          <el-input v-model="temp.date"></el-input>
+        <el-form-item label="价格" prop="price">
+          <el-input v-model="temp.price"></el-input>
         </el-form-item>
-        <el-form-item label="状态" v-model="temp.status">
-         <el-select v-model="temp.status" placeholder="启用状态">
-            <el-option v-for="item in status"
-                       :label="item.label"
-                       :value="item.statusId"
-                       :key="item.statusId"
-            ></el-option>
-          </el-select>
+        <el-form-item label="数量" v-model="temp.number">
+          <el-input v-model="temp.number"></el-input>
+         <!--<el-select v-model="temp.status" placeholder="启用状态">-->
+            <!--<el-option v-for="item in status"-->
+                       <!--:label="item.label"-->
+                       <!--:value="item.statusId"-->
+                       <!--:key="item.statusId"-->
+            <!--&gt;</el-option>-->
+          <!--</el-select>-->
         </el-form-item>
+        <el-form-item label="类别" prop="parentType">
+          <el-input v-model="temp.parentType"></el-input>
+        </el-form-item>
+        <el-form-item label="品牌" prop="brand">
+          <el-input v-model="temp.brand"></el-input>
+        </el-form-item>
+        <el-form-item label="种类" prop="type">
+          <el-input v-model="temp.type"></el-input>
+        </el-form-item>
+        <el-form-item label="包装" prop="packager">
+          <el-input v-model="temp.packager"></el-input>
+        </el-form-item>
+        <el-form-item label="容量" prop="size">
+          <el-input v-model="temp.size"></el-input>
+        </el-form-item>
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="isShowEditVisible = false">取消</el-button>
@@ -85,6 +106,7 @@
     <el-dialog
       title="删除"
       :visible.sync="deleteVisible"
+      :modal-append-to-body="false"
       width="30%">
       <span>确认删除吗</span>
       <span slot="footer" class="dialog-footer">
@@ -107,10 +129,19 @@ export default {
       isShowEditVisible: false,
       deleteVisible: false,
       temp: {
-        uid: '',
-        cname: '',
-        date: '',
-        status: ''
+        id: '',
+        goodsName: '',
+        price: '',
+        number: '',
+        pic: '',
+        parentType: '',
+        brand: '',
+        type: '',
+        packager: '',
+        size: '',
+        createDate: '',
+        updateDate: '',
+        isDeleted: ''
       },
       total: 0,
       page: 1,
@@ -163,8 +194,8 @@ export default {
       // 每次手动将数据置空,因为会出现多次点击搜索情况
       this.filterTableDataEnd = []
       this.tableList.forEach((value, index) => {
-        if (value.cname) {
-          if (value.cname.indexOf(this.searchName) >= 0) {
+        if (value.goodsName) {
+          if (value.goodsName.indexOf(this.searchName) >= 0) {
             this.filterTableDataEnd.push(value)
             console.log(this.filterTableDataEnd)
           }
@@ -196,7 +227,7 @@ export default {
       // console.log(this.tableList)
       deleteTable(tempData).then(() => {
         for (const v of this.tableList) {
-          if (v.uid === this.temp.uid) {
+          if (v.id === this.temp.id) {
             const index = this.tableList.indexOf(v)
             this.tableList.splice(index, 1)
             break
@@ -225,7 +256,7 @@ export default {
       console.log(tempData)
       updateArticle(tempData).then(() => {
         for (const v of this.tableList) {
-          if (v.uid === this.temp.uid) {
+          if (v.id === this.temp.id) {
             const index = this.tableList.indexOf(v)
             this.tableList.splice(index, 1, this.temp)
             break

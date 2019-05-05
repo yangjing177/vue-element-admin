@@ -2,11 +2,27 @@ import request from '@/utils/request'
 
 export function getList(params) {
   return request({
-    url: '/goods/list',
+    url: '/goods/table',
     method: 'get',
     params
   })
 }
+export function getUsersList(params) {
+  return request({
+    url: '/users/table',
+    method: 'get',
+    params
+  })
+}
+
+export function getOrderList(params) {
+  return request({
+    url: '/order/table',
+    method: 'get',
+    params
+  })
+}
+
 export function getList1(params) {
   return request({
     url: '/admin/users',
@@ -25,7 +41,23 @@ export function getMonth(params) {
 
 export function updateArticle(data) {
   return request({
-    url: '/user/update',
+    url: '/goods/update',
+    method: 'post',
+    data
+  })
+}
+
+export function updateUsers(data) {
+  return request({
+    url: '/users/update',
+    method: 'post',
+    data
+  })
+}
+
+export function updateOrderInfo(data) {
+  return request({
+    url: '/order/update',
     method: 'post',
     data
   })
@@ -33,7 +65,23 @@ export function updateArticle(data) {
 
 export function deleteTable(data) {
   return request({
-    url: '/user/delete',
+    url: '/goods/delete',
+    method: 'post',
+    data
+  })
+}
+
+export function deleteUsers(data) {
+  return request({
+    url: '/users/delete',
+    method: 'post',
+    data
+  })
+}
+
+export function deleteOrderInfo(data) {
+  return request({
+    url: '/order/delete',
     method: 'post',
     data
   })
