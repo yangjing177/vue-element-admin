@@ -65,39 +65,39 @@ export const constantRouterMap = [
         meta: { title: 'Tabs', icon: 'tab' }
       }
     ]
-  },
-  // 表单
-  {
-    path: '/form',
-    component: Layout,
-    redirect: '/table/BaseForm',
-    name: 'form',
-    meta: {
-      title: 'form',
-      icon: 'form'
-    },
-    children: [
-      {
-        path: 'qiniu',
-        name: 'qiniu',
-        component: () => import('@/views/form/qiniu'),
-        meta: { title: 'qiniu' }
-      },
-      {
-        path: 'quillEditor',
-        name: 'quillEditor',
-        component: () => import('@/views/form/quillEditor'),
-        meta: { title: 'quillEditor' }
-      }
-      // ,
-      // {
-      //   path: 'tinymce',
-      //   name: 'tinymce',
-      //   component: () => import('@/views/form/tinymce'),
-      //   meta: { title: 'tinymce' }
-      // }
-    ]
   }
+  // 表单
+  // {
+  //   path: '/form',
+  //   component: Layout,
+  //   redirect: '/table/BaseForm',
+  //   name: 'form',
+  //   meta: {
+  //     title: 'form',
+  //     icon: 'form'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'qiniu',
+  //       name: 'qiniu',
+  //       component: () => import('@/views/form/qiniu'),
+  //       meta: { title: 'qiniu' }
+  //     },
+  //     {
+  //       path: 'quillEditor',
+  //       name: 'quillEditor',
+  //       component: () => import('@/views/form/quillEditor'),
+  //       meta: { title: 'quillEditor' }
+  //     }
+  //     // ,
+  //     // {
+  //     //   path: 'tinymce',
+  //     //   name: 'tinymce',
+  //     //   component: () => import('@/views/form/tinymce'),
+  //     //   meta: { title: 'tinymce' }
+  //     // }
+  //   ]
+  // }
 ]
 
 export default new Router({
@@ -107,63 +107,63 @@ export default new Router({
 })
 
 export const asyncRouterMap = [
-  {
-    path: '/icon',
-    component: Layout,
-    name: 'icons',
-    meta: { roles: ['admin'] },
-    children: [
-      {
-        path: 'iconIndex',
-        name: 'iconIndex',
-        component: () => import('@/views/svg-icon/index'),
-        meta: { title: 'svgicons', icon: 'icon', roles: ['admin'] }
-      }
-    ]
-  },
+  // {
+  //   path: '/icon',
+  //   component: Layout,
+  //   name: 'icons',
+  //   meta: { roles: ['admin'] },
+  //   children: [
+  //     {
+  //       path: 'iconIndex',
+  //       name: 'iconIndex',
+  //       component: () => import('@/views/svg-icon/index'),
+  //       meta: { title: 'svgicons', icon: 'icon', roles: ['admin'] }
+  //     }
+  //   ]
+  // },
   // 树形组件
-  {
-    path: '/treeMen',
-    component: Layout,
-    redirect: 'noredirect',
-    meta: {
-      title: 'treeMen',
-      icon: 'TreeMean'
-    },
-    children: [
-      {
-        path: 'treeMen',
-        name: 'treeMen-demo',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'treeMen', icon: 'TreeMean' }
-      }
-    ]
-  },
-  // 组件
-  {
-    path: '/components',
-    component: Layout,
-    redirect: '/components/dragKanban',
-    name: 'Components',
-    meta: {
-      title: 'Components',
-      icon: 'component'
-    },
-    children: [
-      {
-        path: 'componentsmixin',
-        name: 'mixin',
-        component: () => import('@/views/components/backToTop'),
-        meta: { title: 'backToTop' }
-      },
-      {
-        path: 'mixin',
-        name: 'componentMixin',
-        component: () => import('@/views/components/mixin'),
-        meta: { title: 'componentMixin' }
-      }
-    ]
-  },
+  // {
+  //   path: '/treeMen',
+  //   component: Layout,
+  //   redirect: 'noredirect',
+  //   meta: {
+  //     title: 'treeMen',
+  //     icon: 'TreeMean'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'treeMen',
+  //       name: 'treeMen-demo',
+  //       component: () => import('@/views/tree/index'),
+  //       meta: { title: 'treeMen', icon: 'TreeMean' }
+  //     }
+  //   ]
+  // },
+  // // 组件
+  // {
+  //   path: '/components',
+  //   component: Layout,
+  //   redirect: '/components/dragKanban',
+  //   name: 'Components',
+  //   meta: {
+  //     title: 'Components',
+  //     icon: 'component'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'componentsmixin',
+  //       name: 'mixin',
+  //       component: () => import('@/views/components/backToTop'),
+  //       meta: { title: 'backToTop' }
+  //     },
+  //     {
+  //       path: 'mixin',
+  //       name: 'componentMixin',
+  //       component: () => import('@/views/components/mixin'),
+  //       meta: { title: 'componentMixin' }
+  //     }
+  //   ]
+  // },
   // {
   //   path: '/excel',
   //   component: Layout,
