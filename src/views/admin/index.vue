@@ -5,7 +5,7 @@
         <el-form-item>
         </el-form-item>
         <el-form-item >
-          <el-input placeholder="订单状态" v-model="searchName"></el-input>
+          <el-input placeholder="用户名" v-model="searchName"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="doFilter()"><i class="el-icon-search"></i>搜索</el-button>
@@ -16,30 +16,15 @@
     <el-table :data="tableList" v-loading="listLoading" border element-loading-text="拼命加载中" style="width: 100%;">
       <el-table-column prop="id" label="序号" width="65">
       </el-table-column>
-      <el-table-column prop="orderNumber" label="订单号">
+      <el-table-column prop="username" label="用户名">
       </el-table-column>
-      <el-table-column prop="itemCount" label="商品数量">
+      <el-table-column prop="password" label="密码">
       </el-table-column>
-      <el-table-column prop="userName" label="用户" >
+      <el-table-column prop="name" label="姓名" width="110px">
       </el-table-column>
-      <el-table-column label="是否需要奶箱" >
-        <template slot-scope="scope">
-          <span v-if="scope.row.box==0">需要</span>
-          <span v-if="scope.row.box==1">不需要</span>
-        </template>
+      <el-table-column prop="sex" label="性别" width="110px">
       </el-table-column>
-      <el-table-column prop="totalPrice" label="订单总金额" >
-      </el-table-column>
-      <el-table-column label="订单状态" >
-        <template slot-scope="scope">
-          <!--<el-tag size="small" v-if="scope.row.orderStatus == 30">连载中</el-tag>-->
-          <span v-if="scope.row.orderStatus==10">配送中</span>
-          <span v-if="scope.row.orderStatus==20">已完成</span>
-          <span v-if="scope.row.orderStatus==30">审核中</span>
-          <span v-if="scope.row.orderStatus==40">审核未通过</span>
-        </template>
-      </el-table-column>
-      <el-table-column prop="createDate" label="下单时间">
+      <el-table-column prop="createDate" label="创建时间" width="250px">
       </el-table-column>
       <el-table-column prop="operation" label="操作 ">
         <template slot-scope="scope" >
@@ -64,25 +49,18 @@
                :visible.sync="isShowEditVisible"
                :modal-append-to-body="false">
       <el-form label-width="160px" :model="temp" ref="dataForm" :inline="true" >
-        <el-form-item label="订单号" prop="orderNumber">
-          <el-input v-model="temp.orderNumber" :disabled="true"></el-input>
+        <el-form-item label="用户名" prop="username">
+          <el-input v-model="temp.username"></el-input>
         </el-form-item>
-        <el-form-item label="用户" prop="userName">
-          <el-input v-model="temp.userName" :disabled="true"></el-input>
+        <el-form-item label="密码" prop="password">
+          <el-input v-model="temp.password"></el-input>
         </el-form-item>
-        <el-form-item label="总金额" prop="totalPrice">
-          <el-input v-model="temp.totalPrice" :disabled="true"></el-input>
+        <el-form-item label="真实姓名" prop="name">
+          <el-input v-model="temp.name"></el-input>
         </el-form-item>
-        <el-form-item label="订单状态" prop="orderStatus">
-          <el-select v-model="temp.orderStatus" placeholder="订单状态">
-          <el-option v-for="item in status"
-          :label="item.label"
-          :value="item.statusId"
-          :key="item.statusId"
-          ></el-option>
-          </el-select>
+        <el-form-item label="性别" prop="sex">
+          <el-input v-model="temp.sex"></el-input>
         </el-form-item>
-
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="isShowEditVisible = false">取消</el-button>
@@ -108,7 +86,7 @@
 
 
 <script>
-  import { getOrderList, updateOrderInfo, deleteOrderInfo } from '@/api/table'
+  import { getAdminList, updateAdmin, deleteAdmin } from '@/api/table'
   export default {
     data() {
       return {
@@ -118,13 +96,10 @@
         deleteVisible: false,
         temp: {
           id: '',
-          orderNumber: '',
-          itemCount: '',
-          userId: '',
-          userName: '',
-          box: '',
-          totalPrice: '',
-          orderStatus: '',
+          username: '',
+          password: '',
+          name: '',
+          sex: '',
           createDate: '',
           updateDate: '',
           isDeleted: ''
@@ -134,17 +109,11 @@
         pageSize: 10,
         status: [
           {
-            statusId: 10,
-            label: '配送中'
+            statusId: 1,
+            label: '连载中'
           }, {
-            statusId: 20,
-            label: '已完成'
-          }, {
-            statusId: 30,
-            label: '审核中'
-          }, {
-            statusId: 40,
-            label: '审核未通过'
+            statusId: 2,
+            label: '完结'
           }
         ],
         value: '',
@@ -167,7 +136,7 @@
     methods: {
       fetchData() {
         this.listLoading = true
-        getOrderList(this.listQuery).then(response => {
+        getAdminList(this.listQuery).then(response => {
           const limit = 8
           const pageList = response.data.filter((item, index) => index < limit * this.page && index >= limit * (this.page - 1))
           console.log(pageList)
@@ -186,8 +155,8 @@
         // 每次手动将数据置空,因为会出现多次点击搜索情况
         this.filterTableDataEnd = []
         this.tableList.forEach((value, index) => {
-          if (value.orderStatus) {
-            if (value.orderStatus.indexOf(this.searchName) >= 0) {
+          if (value.username) {
+            if (value.username.indexOf(this.searchName) >= 0) {
               this.filterTableDataEnd.push(value)
               console.log(this.filterTableDataEnd)
             }
@@ -217,7 +186,7 @@
         const tempData = Object.assign({}, this.temp)
         console.log(tempData)
         // console.log(this.tableList)
-        deleteOrderInfo(tempData).then(() => {
+        deleteAdmin(tempData).then(() => {
           for (const v of this.tableList) {
             if (v.id === this.temp.id) {
               const index = this.tableList.indexOf(v)
@@ -246,7 +215,7 @@
         // Object.assign复制数据
         const tempData = Object.assign({}, this.temp)
         console.log(tempData)
-        updateOrderInfo(tempData).then(() => {
+        updateAdmin(tempData).then(() => {
           for (const v of this.tableList) {
             if (v.id === this.temp.id) {
               const index = this.tableList.indexOf(v)

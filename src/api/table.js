@@ -23,6 +23,22 @@ export function getOrderList(params) {
   })
 }
 
+export function getCommentsList(params) {
+  return request({
+    url: '/comment/table',
+    method: 'get',
+    params
+  })
+}
+
+export function getAdminList(params) {
+  return request({
+    url: '/admin/table',
+    method: 'get',
+    params
+  })
+}
+
 export function getList1(params) {
   return request({
     url: '/admin/users',
@@ -63,6 +79,22 @@ export function updateOrderInfo(data) {
   })
 }
 
+export function updateComment(data) {
+  return request({
+    url: '/comment/update',
+    method: 'post',
+    data
+  })
+}
+
+export function updateAdmin(data) {
+  return request({
+    url: '/admin/update',
+    method: 'post',
+    data
+  })
+}
+
 export function deleteTable(data) {
   return request({
     url: '/goods/delete',
@@ -87,9 +119,33 @@ export function deleteOrderInfo(data) {
   })
 }
 
+export function deleteComment(data) {
+  return request({
+    url: '/comment/delete',
+    method: 'post',
+    data
+  })
+}
+
+export function deleteAdmin(data) {
+  return request({
+    url: '/admin/delete',
+    method: 'post',
+    data
+  })
+}
+
 export function addTable(data) {
   return request({
     url: '/user/add',
+    method: 'post',
+    data
+  })
+}
+
+export function addAdmin(data) {
+  return request({
+    url: '/admin/add',
     method: 'post',
     data
   })

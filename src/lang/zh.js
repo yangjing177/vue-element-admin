@@ -14,6 +14,10 @@ export default {
     Default: '默认'
   },
   route: {
+    admin: '管理员',
+    adminManage: '管理员管理',
+    addAdmin: '增加管理员',
+    comment: '评论管理',
     AliIcons: '阿里图标',
     contextmenu: '右键菜单',
     simple: '基础',

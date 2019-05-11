@@ -30,25 +30,79 @@ export const constantRouterMap = [
         path: 'table',
         name: 'Table',
         component: () => import('@/views/table/index'),
-        meta: { title: 'complexTable' }
-      },
+        meta: { title: 'complexTable', icon: 'table' }
+      }
       // {
       //   path: 'Form',
       //   name: 'Form',
       //   component: () => import('@/views/form/index'),
       //   meta: { title: 'BaseForm' }
       // },
+    ]
+  },
+  {
+    path: '/example',
+    component: Layout,
+    redirect: '/example/table',
+    name: 'Example',
+    meta: { title: 'Table', icon: 'table' },
+    children: [
       {
         path: 'fullcalendar',
         name: 'Fullcalendar',
         component: () => import('@/views/fullcalendar/fullcalendar'),
-        meta: { title: 'calendar' }
-      },
+        meta: { title: 'calendar', icon: 'table' }
+      }
+    ]
+  },
+  {
+    path: '/example',
+    component: Layout,
+    redirect: '/example/table',
+    name: 'Example',
+    meta: { title: 'Table', icon: 'table' },
+    children: [
       {
         path: 'order',
-        name: 'order',
+        name: 'Order',
         component: () => import('@/views/table/order'),
-        meta: { title: 'order' }
+        meta: { title: 'order', icon: 'table' }
+      }
+    ]
+  },
+  {
+    path: '/example',
+    component: Layout,
+    redirect: '/example/table',
+    name: 'Example',
+    meta: { title: 'Table', icon: 'table' },
+    children: [
+      {
+        path: 'comment',
+        name: 'Comment',
+        component: () => import('@/views/comment/index'),
+        meta: { title: 'comment', icon: 'table' }
+      }
+    ]
+  },
+  {
+    path: '/example',
+    component: Layout,
+    redirect: '/example/table',
+    name: 'Example',
+    meta: { title: 'admin', icon: 'table' },
+    children: [
+      {
+        path: 'adminManage',
+        name: 'AdminManage',
+        component: () => import('@/views/admin/index'),
+        meta: { title: 'adminManage' }
+      },
+      {
+        path: 'addAdmin',
+        name: 'AddAdmin',
+        component: () => import('@/views/admin/addAdmin'),
+        meta: { title: 'addAdmin' }
       }
     ]
   },
