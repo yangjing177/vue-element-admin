@@ -49,7 +49,7 @@
     </el-pagination>
 
 
-    <!-- 新增编辑院校 -->
+    <!-- 编辑订单 -->
     <el-dialog title="编辑"
                :visible.sync="isShowEditVisible"
                :modal-append-to-body="false">
