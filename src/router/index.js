@@ -105,21 +105,21 @@ export const constantRouterMap = [
         meta: { title: 'addAdmin' }
       }
     ]
-  },
-  {
-    path: '/tab',
-    name: 'tab',
-    component: Layout,
-    meta: { icon: 'example' },
-    children: [
-      {
-        path: 'Tabs',
-        name: 'Tabs',
-        component: () => import('@/views/tab/index'),
-        meta: { title: 'Tabs', icon: 'tab' }
-      }
-    ]
   }
+  // {
+  //   path: '/tab',
+  //   name: 'tab',
+  //   component: Layout,
+  //   meta: { icon: 'example' },
+  //   children: [
+  //     {
+  //       path: 'Tabs',
+  //       name: 'Tabs',
+  //       component: () => import('@/views/tab/index'),
+  //       meta: { title: 'Tabs', icon: 'tab' }
+  //     }
+  //   ]
+  // }
   // 表单
   // {
   //   path: '/form',
